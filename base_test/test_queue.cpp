@@ -76,5 +76,11 @@ TEST(Queue, queues_have_different_memory)
 	Queue<int> A(3), B(4);
 	EXPECT_NE(&A, &B);
 }
-
+TEST(Queue, can_push_the_element)
+{
+	Queue <int> A(2);
+	for (int i = 0; i < 2; i++)
+		A.Push(1);
+	ASSERT_NO_THROW(A.Pop());
+}
 

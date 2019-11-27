@@ -47,9 +47,12 @@ T Queue <T>::Pop()
 		throw "Queue is empty";
 	else
 	{
-		bottom = bottom++;
+		T result = queuePtr[bottom];
+		for (int i = bottom; i < top; i++)
+			queuePtr[i] = queuePtr[i + 1];
 		DataCounter--;
-		return  queuePtr[bottom];
+		top--;
+		return result;
 	}
 }
 
@@ -60,8 +63,7 @@ void Queue<T>::Push(T elem)
 		throw "Queue is full";
 	else
 	{
-		top = top++;
-		queuePtr[top] = elem;
+		queuePtr[++top] = elem;
 		DataCounter++;
 	}
 }
