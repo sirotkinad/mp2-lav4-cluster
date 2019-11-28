@@ -93,7 +93,7 @@ void Cluster::Cluster_work(int _time_in_tacts, int _tasks_on_tact, int _p_for_ta
 				if (proc[i] > 0)
 					proc[i]--;
 			}
-			busy_proc = busy_proc + (proc_counter - free);
+			busy_proc+=(proc_counter - free);
 		}
 		_time++;
 	}
@@ -103,7 +103,6 @@ void Cluster::Cluster_work(int _time_in_tacts, int _tasks_on_tact, int _p_for_ta
 void Cluster::Print_statistics()
 {
 	done_tasks = generated_tasks - (undone_tasks + error_tasks);
-	double average_load_proc = busy_proc / _time;
 	cout << endl;
 	cout << "The statistics of cluster: " << endl;
 	cout << "Number of generated tasks: " << generated_tasks << endl;
@@ -111,5 +110,5 @@ void Cluster::Print_statistics()
 	cout << "Number of tasks stayed in queue: " << undone_tasks << endl;
 	cout << "Number of tasks not completed because of the overflow in the queue: " << error_tasks << endl;
 	cout << "Work time: " << _time << " tacts" << endl;
-	cout << "Average load of cluster: " << (average_load_proc/10)*100 <<"%" << endl;
+	cout << "Average load of processor: " <<(busy_proc/_time) << endl;
 }
